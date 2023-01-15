@@ -1,0 +1,5 @@
+user="\u"
+host="\H"
+direc="\w"
+history="(\!)"
+PS1="[$user@$host]:$direc\n  $history > "

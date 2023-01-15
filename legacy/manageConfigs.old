@@ -1,0 +1,89 @@
+#!/bin/bash
+#projectDir="/opt/linux_custom_config"
+localDir="${HOME}/.config/profile"
+
+
+function documentedPath(){
+#   grep -q "^$(basename $1);" ${localDir}/locations && echo $(grep $(basename $1) ${localDir}/locations | cut -d';' -f2 | sed 's@~@'$HOME'@')/$(grep $(basename $1) ${localDir}/locations | cut -d';' -f1)
+  
+  grep "^$(basename $1);" ${localDir}/locations 
+}
+managePath(){
+  if [ -f $1 ]; then
+    realpath $1
+  fi
+}
+pushFile(){
+  if [ $# -eq 1 ]; then
+    location=$(documentedPath $(basename $1))  
+    if [ -z "$location" ]; then
+      echo "File not found in the locations file"
+      return 1
+    elif [ -z "$(managePath $1)" ]; then
+      echo "File doesn't exist"
+      return 1
+    else
+      echo Saving $(managePath $1) in ${projectDir}/files
+      cp -r $(managePath $1) ${projectDir}/files
+      return 0
+    fi  
+  else
+    echo "Incorrect number of parammeters"
+    echo "$0 [FILE_TO_PUSH]"
+    return 0
+  fi  
+}
+pushAll(){
+  for i in $(cut -d';' -f1 ${localDir}/locations );
+  do
+    pushFile $(documentedPath $i)
+  done
+}
+addConfigFile(){
+  if [ $# -eq 1 ]; then
+    if [ $(managePath $1) ]; then
+      if [ -n "$(documentedPath $1)" ]; then
+        echo "$1 already in the locations file"
+        echo "Updating file"
+        pushFile $1
+        return 0
+      else
+        file=$(managePath $1)
+        echo "Adding $file to the locations file"
+        echo "$(basename $file);$(dirname $file)" >> ${localDir}/locations
+        pushFile $file
+        pushFile ${localDir}/locations
+        return 0
+      fi
+    else
+      echo "File to add not found"
+      return 1
+    fi  
+  else
+    echo "Incorrect number of parameters"
+    echo "$0 [FILE_TO_ADD]"
+    return 1
+  fi  
+}
+removeConfigFile(){
+  if [ $# -eq 1 ]; then
+    if [ -z "$(documentedPath $1)" ]; then
+      echo "Error: file is not even in the locations file"  
+      return 1
+    else
+      echo "Removing file from the configuration files list"
+      sed -i "/"$(basename $1)"/"d ${localDir}/locations
+      rm -rf ${projectDir}/files/$(basename $1)
+      return 0
+    fi
+  fi
+}
+vconf(){
+  if [ -n "$(documentedPath $1)" ]; then
+    vim $(documentedPath $1)
+    pushFile $(documentedPath $1)
+  else
+    echo "Cannot update $1"
+    echo "File not found in the locations file " 
+  fi  
+}

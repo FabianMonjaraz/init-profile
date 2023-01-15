@@ -1,0 +1,7 @@
+cdm(){
+  clear
+  TARGET=$1
+  [[ ! -d $TARGET ]] && mkdir -v -p $TARGET
+  cd $TARGET
+  ls -lath
+}

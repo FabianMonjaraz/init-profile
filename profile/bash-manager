@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# The &>/dev/null is important in case there are any configuration that could print
+# the accessed directory, like 'alias cd="cd -P"'
+CONFIG_PATH=$(cd -- "$(dirname -- ${BASH_SOURCE[0]})" &>/dev/null && pwd)
+BASHRC_CONFIG_PATH="${CONFIG_PATH}/bashrc-configs"
+if [[ -d $BASHRC_CONFIG_PATH ]]; then
+  for i in $(ls $BASHRC_CONFIG_PATH); do
+    . ${BASHRC_CONFIG_PATH}/${i}
+  done
+fi

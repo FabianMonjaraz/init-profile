@@ -1,0 +1,11 @@
+alias _="sudo"
+alias src="source ~/.bashrc"
+alias ls="clear; ls --color=auto"
+alias ll="ls -lath"
+alias cat="clear; cat"
+alias w3m="w3m lite.duckduckgo.com/lite"
+alias cd="cd -P"
+alias watch="watch -n 1"
+alias alarm="for i in {1..15}; do echo -ne '\007'; sleep .06; done"
+alias mv='mv -v'
+alias cp='cp -v'

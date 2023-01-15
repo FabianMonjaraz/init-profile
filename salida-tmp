@@ -1,0 +1,31 @@
++++ dirname -- manage-configs.sh
+++ cd -- .
+++ pwd
++ FILES_PATH=/home/dm0n/.customConfig
++ read LOCATION
++ IFS=:
++ read ORIGIN DEST
++ eval '[[' '!' -d '${HOME}/.config' ']]'
+++ [[ ! -d /home/dm0n/.config ]]
++ [[ profile =~ .*\* ]]
++ eval cp -v -r /home/dm0n/.customConfig/profile '${HOME}/.config'
+++ cp -v -r /home/dm0n/.customConfig/profile /home/dm0n/.config
+'/home/dm0n/.customConfig/profile/bash-manager' -> '/home/dm0n/.config/profile/bash-manager'
+'/home/dm0n/.customConfig/profile/bashrc-configs/bash-flags' -> '/home/dm0n/.config/profile/bashrc-configs/bash-flags'
+'/home/dm0n/.customConfig/profile/bashrc-configs/bash-functions' -> '/home/dm0n/.config/profile/bashrc-configs/bash-functions'
+'/home/dm0n/.customConfig/profile/bashrc-configs/bash-prompt' -> '/home/dm0n/.config/profile/bashrc-configs/bash-prompt'
+'/home/dm0n/.customConfig/profile/bashrc-configs/bash-aliases' -> '/home/dm0n/.config/profile/bashrc-configs/bash-aliases'
++ read LOCATION
++ IFS=:
++ read ORIGIN DEST
++ eval '[[' '!' -d '~' ']]'
+++ [[ ! -d /home/dm0n ]]
++ [[ home/* =~ .*\* ]]
++ eval find /home/dm0n/.customConfig/home/ -maxdepth 1 -mindepth 1 -exec cp -v -r '{}' '~' '\;'
+++ find /home/dm0n/.customConfig/home/ -maxdepth 1 -mindepth 1 -exec cp -v -r '{}' /home/dm0n ';'
+'/home/dm0n/.customConfig/home/.vimrc' -> '/home/dm0n/.vimrc'
+'/home/dm0n/.customConfig/home/.tmux.conf' -> '/home/dm0n/.tmux.conf'
+'/home/dm0n/.customConfig/home/test-dir' -> '/home/dm0n/test-dir'
+'/home/dm0n/.customConfig/home/test-dir/werewere' -> '/home/dm0n/test-dir/werewere'
+'/home/dm0n/.customConfig/home/test-dir/asdf' -> '/home/dm0n/test-dir/asdf'
++ read LOCATION
