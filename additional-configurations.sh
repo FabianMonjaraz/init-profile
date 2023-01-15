@@ -7,7 +7,7 @@ bashrc_configurations() {
   SEARCH_PATTERN='configFolder=.*\nif \[ -f "\$\{configFolder\}/bash-manager" \]; then' 
   TARGET_FILE=${HOME}/.bashrc
   echo "=== Executing Additional configurations in $TARGET_FILE"
-  if [[ ! $( pcregrep -M "$SEARCH_PATTERN" $TARGET_FILE ) ]]; then
+  if [[ ! $( pcregrep -M "$SEARCH_PATTERN" $TARGET_FILE 2>/dev/null ) ]]; then
     # cat <<- EOM >> $TARGET_FILE
     echo $TARGET_FILE
     # Enclosing "EOM" in quotes helps to prevent the text to transform the
@@ -18,6 +18,7 @@ if [ -f "${configFolder}/bash-manager" ]; then
   . ${configFolder}/bash-manager
 fi
 EOM
+  source $TARGET_FILE
 
   else
     echo "Configurations in $TARGET_FILE are already present." 
