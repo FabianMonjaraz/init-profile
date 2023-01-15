@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 bashrc_configurations() {
   if [[ ! $(which pcregrep) ]]; then
-    echo "Alert: pcre is not installed, additional .bashrc configurations must be made manually" 
+    echo "=== Alert: pcre is not installed, additional .bashrc configurations may need to be setted manually" 
     return 0
   fi
   SEARCH_PATTERN='configFolder=.*\nif \[ -f "\$\{configFolder\}/bash-manager" \]; then' 
