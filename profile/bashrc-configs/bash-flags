@@ -2,6 +2,7 @@ export VISUAL=vim
 export EDITOR=$VISUAL
 export CDPATH=".:~/.bashmarks"
 export PATH=$PATH:'~/scripts'
+export PATH=$PATH:'~/.local/bin'
 set -o vi
 
 ## To get colored Man Pages
