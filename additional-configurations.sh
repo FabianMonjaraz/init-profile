@@ -40,8 +40,13 @@ clone_scripts() {
   [[ ! -d ${HOME}/scripts ]] && mkdir -v ${HOME}/scripts
 
   cd ${HOME}/git
-  if [[ ! -d ${PROJECT_DIR} ]]; then
+  if [[ ! -d ${PROJECT_DIR}/.git ]]; then
     git clone $PROJECT
+    RC=$?
+    [[ $RC -ne 0 ]] && return $RC
+  else
+    cd $PROJECT_DIR
+    git pull
     RC=$?
     [[ $RC -ne 0 ]] && return $RC
   fi
