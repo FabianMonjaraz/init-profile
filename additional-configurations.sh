@@ -49,6 +49,7 @@ clone_scripts() {
     git pull
     RC=$?
     [[ $RC -ne 0 ]] && return $RC
+    cd -
   fi
 
   echo "=== Linking scripts"
