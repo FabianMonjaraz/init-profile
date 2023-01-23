@@ -55,7 +55,7 @@ clone_scripts() {
   echo "=== Linking scripts"
   cd $PROJECT_DIR
   for script in $(ls ./*); do
-    ln -s -v -t ${HOME}/scripts $(realpath $script)
+    ln -s -v -t ${HOME}/scripts $(realpath $script) 2>/dev/null
   done
   cd $CURRENT
 }
