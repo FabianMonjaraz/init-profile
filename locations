@@ -1,2 +1,3 @@
 profile:~/.config
 home/*:~
+kitty/*:~/.config/kitty

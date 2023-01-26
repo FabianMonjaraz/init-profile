@@ -8,4 +8,4 @@ alias cd="cd -P"
 alias watch="watch -n 1"
 alias alarm="for i in {1..15}; do echo -ne '\007'; sleep .06; done"
 alias mv='mv -v'
-alias cp='cp -v'
+alias cp='cp -vd'
