@@ -1,0 +1,18 @@
+[user]
+	name = FabianMonjaraz
+	email = d.fabian.monjaraz@gmail.com
+[color]
+	ui = auto
+[credential]
+	helper = store
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[pull]
+	rebase = true
+[fetch]
+	prune = true
+[diff]
+	colorMoved = zebra
