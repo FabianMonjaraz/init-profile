@@ -12,6 +12,7 @@ while read LOCATION; do
   else
     eval cp -v -r ${FILES_PATH}/${ORIGIN} $DEST
   fi
+  echo
 done < ./locations
 
 [[ -f additional-configurations.sh ]] && bash additional-configurations.sh

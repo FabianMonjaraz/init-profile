@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 bashrc_configurations() {
   if [[ ! $(which pcregrep) ]]; then
-    echo "=== Alert: pcregrep not found; additional .bashrc configurations may need to be setted manually" 
+    echo -e "\n=== Alert: pcregrep not found; additional .bashrc configurations may need to be setted manually" 
     return 1
   fi
   SEARCH_PATTERN='configFolder=.*\nif \[ -f "\$\{configFolder\}/bash-manager" \]; then' 
@@ -31,7 +31,7 @@ clone_scripts() {
     return 1
   fi
 
-  echo "=== Pulling scripts from github"
+  echo -e "\n=== Pulling scripts from github"
   PROJECT="https://github.com/FabianMonjaraz/linux-scripts.git"
   PROJECT_DIR=$(awk -F/ '{print $NF}' <<< ${PROJECT%.*})
   CURRENT=$(pwd)
@@ -52,7 +52,7 @@ clone_scripts() {
     cd -
   fi
 
-  echo "=== Linking scripts"
+  echo -e "\n=== Linking scripts"
   cd $PROJECT_DIR
   for script in $(ls ./*); do
     ln -s -v -t ${HOME}/scripts $(realpath $script) 2>/dev/null
