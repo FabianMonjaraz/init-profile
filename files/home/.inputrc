@@ -2,7 +2,7 @@
 $include /etc/inputrc
 
 # set completion-prefix-display-length 4
-set show-all-if-ambiguous on
+# set show-all-if-ambiguous on
 set echo-control-characters off
 
 set colored-stats on
