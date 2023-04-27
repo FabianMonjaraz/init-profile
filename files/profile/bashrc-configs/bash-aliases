@@ -8,3 +8,5 @@ alias watch="watch -n 1"
 alias alarm="for i in {1..15}; do echo -ne '\007'; sleep .06; done"
 alias mv='mv -v'
 alias cp='cp -vd'
+alias connect-sony-headphones='bluetoothctl connect 38:18:4C:7D:0E:91'
+alias connect-black-controller='bluetoothctl connect A4:AE:11:5A:43:D1'
