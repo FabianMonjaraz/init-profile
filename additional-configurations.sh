@@ -60,5 +60,17 @@ clone_scripts() {
   cd $CURRENT
 }
 
+clone_vundle_git() {
+  if [[ ! $(which git) ]]; then
+    echo "=== Alert: git not found; couldn't get the scripts project" 
+    return 1
+  fi
+
+  echo -e "\n=== Cloning Vundle repo to install vim plugins"
+  [[ ! -d ${HOME}/.vim/bundle/Vundle.vim ]] && mkdir -v -p ${HOME}/.vim/bundle/Vundle.vim
+   git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+}
+
 bashrc_configurations
 clone_scripts
+clone_vundle_git
