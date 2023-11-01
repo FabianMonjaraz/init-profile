@@ -6,22 +6,23 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'hashivim/vim-terraform'
 call vundle#end()
-filetype plugin indent on
 
 set backspace=indent,eol,start
 
-set smartindent
-filetype on
-filetype plugin on
-filetype indent on
 set tabstop=2
 set shiftwidth=2
 set expandtab
-
-syntax on
-
+set autoindent
 set nu
 set relativenumber
+
+"set smartindent
+
+syntax on
+filetype on
+
+"autocmd FileType yaml setlocal ai ts=2 et nu rnu
+
 
 set hlsearch
 set incsearch
@@ -30,7 +31,7 @@ set ignorecase
 set smartcase
 
 set ruler
-"set cursorline
+set cursorline
 set visualbell
 set showcmd
 
@@ -39,8 +40,6 @@ inoremap " ""<left>
 inoremap ' ''<left>
 inoremap ( ()<left>
 inoremap { {}<left>
-" inoremap {<CR> {<CR>}<ESC>O
-" inoremap {;<CR> {<CR>};<ESC>O
 inoremap [ []<left>
 nnoremap <CR> :noh<CR>
 
