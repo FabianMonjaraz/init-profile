@@ -35,11 +35,10 @@
     - name: Define dir name for the linux scripts repo
       ansible.builtin.set_fact:
         linux_scripts_repo_dir: '{{ ((linux_scripts_repository | split("/"))[-1] | split("."))[0] }}'
-        vulndle_repo_dir: '{{ ((vundle_repository | split("/"))[-1] | split("."))[0] }}'
         
     - name: Clone vundle for vim
       ansible.builtin.git:
-        dest: '{{ repos_dir }}/{{ vulndle_repo_dir }}'
+        dest: '{{ vundle_dir }}'
         repo: '{{ vundle_repository }}'
 
     - name: Clone linux scripts
