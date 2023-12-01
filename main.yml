@@ -10,8 +10,6 @@
       ansible.builtin.setup:
         gather_subset:
           - '!all'
-      tags:
-        - marker
 
     - name: Create needed directories
       ansible.builtin.file:
@@ -43,7 +41,6 @@
       ansible.builtin.git:
         dest: '{{ repos_dir }}/{{ vulndle_repo_dir }}'
         repo: '{{ vundle_repository }}'
-
 
     - name: Clone linux scripts
       ansible.builtin.git:
