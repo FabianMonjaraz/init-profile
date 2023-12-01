@@ -1,0 +1,66 @@
+---
+- name: Init dm0n configurations
+  hosts: all
+  gather_facts: false
+  vars_files:
+    - vars/main.yml
+
+  tasks:
+    - name: Gather needed facts
+      ansible.builtin.setup:
+        gather_subset:
+          - '!all'
+      tags:
+        - marker
+
+    - name: Create needed directories
+      ansible.builtin.file:
+        path: '{{ item }}'
+        state: directory
+      loop: '{{ needed_directories }}'
+
+    - name: Copy the configuration files inside their corresponding destination
+      ansible.builtin.copy:
+        src: 'files/{{ item.src }}'
+        dest: '{{ item.dest }}'
+      loop: '{{ locations }}'
+
+    - name: Update .bashrc file
+      ansible.builtin.blockinfile:
+        path: '{{ ansible_user_dir }}/.bashrc'
+        block: |
+          configFolder="${HOME}/.config/profile"
+          if [ -f "${configFolder}/bash-manager" ]; then
+            . ${configFolder}/bash-manager
+          fi
+
+    - name: Define dir name for the linux scripts repo
+      ansible.builtin.set_fact:
+        linux_scripts_repo_dir: '{{ ((linux_scripts_repository | split("/"))[-1] | split("."))[0] }}'
+        vulndle_repo_dir: '{{ ((vundle_repository | split("/"))[-1] | split("."))[0] }}'
+        
+    - name: Clone vundle for vim
+      ansible.builtin.git:
+        dest: '{{ repos_dir }}/{{ vulndle_repo_dir }}'
+        repo: '{{ vundle_repository }}'
+
+
+    - name: Clone linux scripts
+      ansible.builtin.git:
+        dest: '{{ repos_dir }}/{{ linux_scripts_repo_dir }}'
+        repo: '{{ linux_scripts_repository }}'
+
+    - name: Prepare scripts to be linked
+      ansible.builtin.find:
+        paths: '{{ repos_dir }}/{{ linux_scripts_repo_dir }}'
+        file_type: file
+      register: r_cloned_scripts
+
+    - name: Link the scripts
+      ansible.builtin.file:
+        state: link
+        src: '{{ item.path }}'
+        path: '{{ scripts_dir }}/{{ (item.path | split("/"))[-1] }}'
+        mode: 'u+x'
+      loop: '{{ r_cloned_scripts.files }}'
+...

@@ -1,0 +1,20 @@
+---
+# Path with ending slash (/) means to take the content of the path
+# without it it means copy the whole directory.
+locations:
+  - src: profile/
+    dest: '{{ ansible_user_dir }}/.config'
+  - src: home/
+    dest: '{{ ansible_user_dir }}'
+  - src: kitty
+    dest: '{{ ansible_user_dir }}/.config'
+linux_scripts_repository: https://github.com/FabianMonjaraz/linux-scripts.git
+vundle_repository: https://github.com/VundleVim/Vundle.vim.git
+
+repos_dir: '{{ ansible_user_dir }}/git'
+scripts_dir: '{{ ansible_user_dir }}/scripts'
+vundle_dir: '{{ ansible_user_dir }}/.vim/bundle/Vundle.vim'
+needed_directories:
+  - '{{ repos_dir }}'
+  - '{{ scripts_dir }}'
+  - '{{ vundle_dir }}'
