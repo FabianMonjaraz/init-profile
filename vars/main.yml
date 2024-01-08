@@ -8,6 +8,8 @@ locations:
     dest: '{{ ansible_user_dir }}'
   - src: kitty
     dest: '{{ ansible_user_dir }}/.config'
+  - src: qtile
+    dest: '{{ ansible_user_dir }}/.config'
 linux_scripts_repository: https://github.com/FabianMonjaraz/linux-scripts.git
 vundle_repository: https://github.com/VundleVim/Vundle.vim.git
 
