@@ -3,6 +3,7 @@ export EDITOR=$VISUAL
 export CDPATH=".:~/.bashmarks"
 export PATH=$PATH:'~/scripts'
 export PATH=$PATH:'~/.local/bin'
+export PATH=$PATH:'~/.cargo/bin'
 # set -o vi
 
 ## To get colored Man Pages
