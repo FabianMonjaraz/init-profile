@@ -35,17 +35,17 @@ from libqtile.utils import guess_terminal
 def go_to_group(name: str):
     def _inner(qtile: Qtile):
         if len(qtile.screens) == 1:
-            qtile.groups_map[name].cmd_toscreen()
+            qtile.groups_map[name].toscreen()
             return
 
         #if name in ["I","II","III","IV","V"]:
         if name in "12345":
         
             qtile.focus_screen(0)
-            qtile.groups_map[name].cmd_toscreen()
+            qtile.groups_map[name].toscreen()
         else:
             qtile.focus_screen(1)
-            qtile.groups_map[name].cmd_toscreen()
+            qtile.groups_map[name].toscreen()
 
     return _inner
 
@@ -93,13 +93,18 @@ keys = [
     Key([mod], "w", lazy.spawn("firefox"), desc="Web browser"),
     Key([mod, "shift"], "w", lazy.spawn("firefox --private-window"), desc="Web browser"),
     Key([mod], "s", lazy.spawn("scrot -s -e 'xclip -selection clipboard -t image/png < $f && rm $f'"), desc="Screenshot"),
+    Key([mod], "semicolon", lazy.spawn("bash -c 'echo -n ñ | xclip -sel clip'"), desc="Special character ñ"),
     Key([mod, "shift"], "x", lazy.spawn("shutdown -h now"), desc="Screenshot"),
+
+    Key([mod], "v", lazy.spawn("/home/dm0n/scripts/toggle-screenkey"), desc="Toggle screenkey"),
+    Key([mod], "g", lazy.spawn("/home/dm0n/scripts/create-gif 10"), desc="Create gif from selection"),
     #Key([mod, "shift"], "r", lazy.spawn("shutdown -r now"), desc="Screenshot"),
     
 
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod, "shift"], "q", lazy.window.kill(), desc="Kill focused window"),
+    Key([mod], 'period', lazy.next_screen(), desc='Next Monitor'),
 
     Key([mod, "shift"], "r", lazy.restart(), desc="Restart Qtile"),
     Key([mod, "shift"], "e", lazy.shutdown(), desc="Shutdown Qtile"),
@@ -238,7 +243,7 @@ dgroups_key_binder = None
 dgroups_app_rules = []  # type: List
 follow_mouse_focus = True
 bring_front_click = False
-cursor_warp = False
+cursor_warp = True
 floating_layout = layout.Floating(float_rules=[
     # Run the utility of `xprop` to see the wm class and name of an X client.
     *layout.Floating.default_float_rules,
