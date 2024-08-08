@@ -90,9 +90,11 @@ keys = [
     Key([mod, "shift"], "Return", lazy.layout.toggle_split(),
         desc="Toggle between split and unsplit sides of stack"),
     Key([mod], "Return", lazy.spawn("kitty"), desc="Launch terminal"),
+    Key([mod], "m", lazy.spawn("spotify-launcher"), desc="Spotify client"),
     Key([mod], "w", lazy.spawn("firefox"), desc="Web browser"),
     Key([mod, "shift"], "w", lazy.spawn("firefox --private-window"), desc="Web browser"),
     Key([mod], "s", lazy.spawn("scrot -s -e 'xclip -selection clipboard -t image/png < $f && rm $f'"), desc="Screenshot"),
+    Key([mod, "shift"], "s", lazy.spawn("scrot -s -e 'xclip -selection clipboard -t image/png < $f'"), desc="Screenshot"),
     Key([mod], "semicolon", lazy.spawn("bash -c 'echo -n ñ | xclip -sel clip'"), desc="Special character ñ"),
     Key([mod, "shift"], "x", lazy.spawn("shutdown -h now"), desc="Screenshot"),
 
@@ -194,6 +196,7 @@ screens = [
     Screen(
       bottom=bar.Bar(
           [
+              widget.GroupBox(visible_groups=['1','2','3','4','5'],highlight_method='line'),
               widget.Chord(
                   chords_colors={
                       'launch': ("#ff0000", "#ffffff"),
@@ -202,7 +205,6 @@ screens = [
               ),
               widget.Clock(format='%Y-%m-%d %a %I:%M %p'),
               widget.WindowName(),
-              widget.GroupBox(visible_groups=['1','2','3','4','5'],highlight_method='line'),
           ],
         24,
         background="#00000000"
@@ -211,7 +213,6 @@ screens = [
     Screen(
       bottom=bar.Bar(
         [
-            widget.GroupBox(visible_groups=['6','7','8','9','0'],highlight_method='line'),
             #widget.GroupBox(),
             widget.WindowName(),
             widget.Chord(
@@ -223,6 +224,7 @@ screens = [
             #widget.Systray(),
             widget.CurrentLayout(),
             widget.Clock(format='%Y-%m-%d %a %I:%M %p'),
+            widget.GroupBox(visible_groups=['6','7','8','9','0'],highlight_method='line'),
         ],
         24,
         background="#00000000"
