@@ -1,3 +1,5 @@
 profile:~/.config
 home/*:~
 kitty/*:~/.config/kitty
+qtile:~/.config
+i3:~/.config
