@@ -5,3 +5,8 @@ cdm(){
   cd $TARGET
   ls -lath
 }
+current-dir-disk-usage() {
+  TARGET=$1
+  [[ ! -e $TARGET ]] && TARGET=.
+  find $TARGET -maxdepth 1 -type d -exec du -scx {} \; | sort -nr | grep -v total
+}
