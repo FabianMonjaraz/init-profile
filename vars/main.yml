@@ -4,7 +4,7 @@
 locations:
   - src: profile
     dest: '{{ ansible_user_dir }}/.config'
-  - src: home
+  - src: home/
     dest: '{{ ansible_user_dir }}'
   - src: kitty
     dest: '{{ ansible_user_dir }}/.config'
