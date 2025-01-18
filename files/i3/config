@@ -217,6 +217,7 @@ focus_follows_mouse yes
 ## Extra bindings
 ### To get the keysym of a special character use `xev -event keyboard`, press the key and look for the keysym section
 bindsym $mod+0x2e focus output left 
+bindsym $mod+Tab workspace back_and_forth
 bindsym $mod+Shift+0x2e move container to output left; focus output left
 bindsym $mod+w exec firefox
 bindsym $mod+Shift+w exec firefox --private-window
