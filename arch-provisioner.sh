@@ -2,18 +2,29 @@
 
 DEPENDENCIES=(
   tmux
+  ranger
   vim
   python3
-  i3-wm
-  rofi
-  mplayer
+  tldr
   bluez
   bluez-utils
   pipewire
-  firefox
   which
   sudo
   man-db
+  lemurs
+  rust
+  xorg-xinit
+  xorg-server
+  firefox
+  i3-wm
+  i3status
+  kitty
+  eog
+  feh
+  rofi
+  mplayer
+  pavucontrol
 )
 # for i in ${DEPENDENCIES[@]}; do echo PKG $i; done
 sudo pacman -S ${DEPENDENCIES[@]}

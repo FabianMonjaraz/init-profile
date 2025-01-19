@@ -2,6 +2,8 @@
 # Path with ending slash (/) means to take the content of the path
 # without it it means copy the whole directory.
 locations:
+  - src: .config/
+    dest: '{{ ansible_user_dir }}/.config'
   - src: profile
     dest: '{{ ansible_user_dir }}/.config'
   - src: home/

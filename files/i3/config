@@ -214,6 +214,9 @@ default_border pixel 0
 default_floating_border pixel 0
 focus_follows_mouse yes
 
+gaps inner 7
+smart_gaps on
+
 ## Extra bindings
 ### To get the keysym of a special character use `xev -event keyboard`, press the key and look for the keysym section
 bindsym $mod+0x2e focus output left 

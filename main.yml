@@ -27,6 +27,9 @@
       ansible.builtin.blockinfile:
         path: '{{ ansible_user_dir }}/.bashrc'
         block: |
+          if [  -z $DISPLAY ] && [ "$XDG_VTNR" -eq 2 ]; then
+            exec startx
+          fi
           configFolder="${HOME}/.config/profile"
           if [ -f "${configFolder}/bash-manager" ]; then
             . ${configFolder}/bash-manager
