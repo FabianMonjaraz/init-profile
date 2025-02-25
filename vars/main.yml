@@ -12,6 +12,8 @@ locations:
     dest: '{{ ansible_user_dir }}/Downloads'
   - src: kitty
     dest: '{{ ansible_user_dir }}/.config'
+  - src: rofi
+    dest: '{{ ansible_user_dir }}/.config'
   - src: qtile
     dest: '{{ ansible_user_dir }}/.config'
   - src: i3

@@ -1,3 +1,2 @@
-#feh --bg-fill --randomize ~/Imagenes/Wallpapers/*
-feh --bg-fill ~/Imagenes/Wallpapers/minimal/dark-minimal-mountains.png
+feh --bg-fill --randomize ~/Pictures/Wallpapers/*
 # bash ~/startupScripts/background/fehBackground

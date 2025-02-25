@@ -4,7 +4,6 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'hashivim/vim-terraform'
 call vundle#end()
 
 set backspace=indent,eol,start
